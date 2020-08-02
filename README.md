@@ -1,2 +1,2 @@
-# lincoln
+# Lincoln
 A CLI tool to plan and achieve your reading goals!
