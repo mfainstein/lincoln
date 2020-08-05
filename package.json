@@ -1,0 +1,28 @@
+{
+  "name": "lincoln",
+  "version": "1.0.0",
+  "description": "A CLI tool to plan and achieve your reading goals!",
+  "main": "Main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfainstein/lincoln.git"
+  },
+  "keywords": [
+    "reading",
+    "plan",
+    "planning",
+    "goals",
+    "CLI",
+    "tool",
+    "lincoln"
+  ],
+  "author": "Mark Fainstein",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mfainstein/lincoln/issues"
+  },
+  "homepage": "https://github.com/mfainstein/lincoln#readme"
+}
