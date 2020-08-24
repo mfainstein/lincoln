@@ -1,0 +1,9 @@
+#=== FOLDER EXCLUDES ===
+#all embedded database related files
+db/*
+
+#all config files
+config/*
+
+#all transpiled files
+out/*
