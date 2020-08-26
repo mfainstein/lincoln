@@ -1,0 +1,2 @@
+remove add-reader command
+complete configure command

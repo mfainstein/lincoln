@@ -1,18 +1,33 @@
 import {injectable} from "inversify";
-import {Command} from "./Command";
-import {CommandOutput} from "./CommandOutput";
-import {SheleveCommandInput} from "./SheleveCommandInput";
+import {Command} from "../Command";
+import {CommandOutput} from "../CommandOutput";
+import {ShelveCommandInput} from "./ShelveCommandInput";
+import {CommandBase} from "../CommandBase";
+import {CommandInput} from "../CommandInput";
+
+/**
+ *
+ *
+ */
 @injectable()
-export class ShelveCommand implements Command {
-
-    execute(input:SheleveCommandInput): Promise<CommandOutput> {
-        console.log("AddBookCommand command executing...");
-        return new Promise(() => {});
+export class ShelveCommand extends CommandBase {
+    async doExecute(input: CommandInput): Promise<CommandOutput> {
+        throw new Error("Not implemented");
     }
 
-    undo(): Promise<any> {
-        return new Promise(() => {});
+    getInputValidator<T extends CommandInput>(): (value: any) => T {
+        throw new Error("Not implemented");
     }
+
+    getDescription(): string {
+        return "";
+    }
+
+    undo(): Promise<boolean> {
+        throw new Error("Not Implemented");
+    }
+
+
 
 
 }

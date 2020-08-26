@@ -1,8 +1,8 @@
 import {injectable, multiInject} from "inversify";
 import {CommandsRegistry} from "./CommandsRegistry";
-import {Command} from "../Command";
-import {AppTypes} from "../../AppTypes";
-import {TextUtils} from "../../../infra/utils/TextUtils";
+import {Command} from "../commands/Command";
+import {AppTypes} from "../AppTypes";
+import {TextUtils} from "../../infra/utils/TextUtils";
 
 
 @injectable()
@@ -21,7 +21,7 @@ export class CommandsRegistryImpl implements CommandsRegistry{
     }
 
     register(command:Command): void {
-        let commandName:string = command.getName();
+        let commandName:string = command.getExecutionName();
         this.commandByName.set(commandName, command);
     }
 }

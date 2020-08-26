@@ -1,3 +1,3 @@
 export enum ReadingMedium {
-    PAPER, ELECTRONIC, AUDIBLE
+    Paper, Electronic, Audible
 }

@@ -1,4 +1,7 @@
 #=== FOLDER EXCLUDES ===
+#IntelliJ related
+.idea/*
+
 #all embedded database related files
 db/*
 
@@ -7,3 +10,7 @@ config/*
 
 #all transpiled files
 out/*
+
+#coverage related (nyc)
+coverage/*
+.nyc_output/*

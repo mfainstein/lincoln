@@ -2,9 +2,16 @@
   "name": "lincoln",
   "version": "1.0.0",
   "description": "A CLI tool to plan and achieve your reading goals!",
-  "main": "Main.js",
+  "main": "out/Main.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha --require ts-node/register test/**/*.ts",
+    "link": "npm link",
+    "coverage": "nyc npm run test",
+    "compile": "tsc -p .",
+    "validator": "npx typescript-json-validator"
+  },
+  "bin": {
+    "lincoln": "./out/Main.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +31,46 @@
   "bugs": {
     "url": "https://github.com/mfainstein/lincoln/issues"
   },
-  "homepage": "https://github.com/mfainstein/lincoln#readme"
+  "homepage": "https://github.com/mfainstein/lincoln#readme",
+  "dependencies": {
+    "@nano-sql/adapter-sqlite": "^2.0.8",
+    "@nano-sql/core": "^2.3.7",
+    "@types/md5": "^2.2.0",
+    "commander": "^6.0.0",
+    "inquirer": "^7.3.3",
+    "inversify": "^5.0.1",
+    "md5": "^2.3.0",
+    "omelette": "^0.4.12",
+    "reflect-metadata": "^0.1.13",
+    "typescript": "^3.9.7"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.12",
+    "@types/inquirer": "^7.3.0",
+    "@types/lowdb": "^1.0.9",
+    "@types/mocha": "^8.0.3",
+    "chai": "^4.2.0",
+    "mocha": "^8.1.2",
+    "source-map-support": "^0.5.19",
+    "ts-node": "^9.0.0",
+    "typescript-json-validator": "^2.4.2"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src"
+    ],
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "all": true,
+    "check-coverage": false,
+    "statements": 90,
+    "functions": 90,
+    "branches": 90,
+    "lines": 90
+  }
 }

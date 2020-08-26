@@ -1,7 +1,11 @@
 import {Reader} from "./Reader";
 
-export interface ReaderDao {
-    setReader(reader: Reader): void;
+export interface ReadersDao {
+    updateReader(reader: Reader): void;
 
-    getReaderByEmail(): Reader;
+    getReaderByEmail(email: string): Promise<Reader>;
+
+    getReaderById(readerId: string): Reader;
+
+    addReader(email:string): Promise<boolean>
 }
