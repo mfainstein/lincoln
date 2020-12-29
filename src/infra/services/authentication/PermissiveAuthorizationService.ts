@@ -3,7 +3,7 @@ import {TextUtils} from "../../utils/TextUtils";
 import {DomainTypes} from "../../../domain/DomainTypes";
 import {ReadersDao} from "../../../domain/reader/ReadersDao";
 import {Reader} from "../../../domain/reader/Reader";
-import {AuthenticationSsoService} from "../../../app/services/AuthenticationSsoService";
+import {AuthenticationSsoService} from "../../../app/services/auth/AuthenticationSsoService";
 
 @injectable()
 export class PermissiveAuthorizationService implements AuthenticationSsoService {

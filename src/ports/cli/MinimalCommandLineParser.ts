@@ -1,24 +1,20 @@
 import {AppTypes} from "../../app/AppTypes";
 import {inject, injectable} from "inversify";
-import {Controller} from "../../app/control/Controller";
 import {CommandLineParser} from "./CommandLineParser";
-import {CommandOutput} from "../../app/commands/CommandOutput";
 import {ReaderConfig} from "./ReaderConfig";
+import {Requester} from "cote";
+import {LincolnRespond} from "../../app/LincolnRespond";
 
 @injectable()
 export class MinimalCommandLineParser implements CommandLineParser {
 
-    constructor(@inject(AppTypes.Controller) private controller: Controller) {
-    }
-
     private executeCommandAux(commandName: string, data: any): void {
-        let commandPromise: Promise<CommandOutput> = this.controller.executeCommand(commandName, data);
-        commandPromise.then((output: CommandOutput) => {
-            process.stdout.write(JSON.stringify(output));
-
-        }).catch((output: CommandOutput) => {
+        const requester:Requester = new Requester({ name: 'CliClient'});
+        requester.send(data).then((respond:LincolnRespond)=>{
+            process.stdout.write(JSON.stringify(respond));
+        }).catch((respond:LincolnRespond)=>{
             process.stderr.write("Error executing command " + commandName + ":");
-            process.stderr.write(JSON.stringify(output));
+            process.stderr.write(JSON.stringify(respond));
         });
     }
 
@@ -27,7 +23,7 @@ export class MinimalCommandLineParser implements CommandLineParser {
         try {
             data = JSON.parse(stringData);
         } catch (e) {
-            process.stderr.write("Error executing command " + commandName + ": could not parse input: " + e);
+            throw new Error("Error executing command " + commandName + ": could not parse input: " + e)
         }
         return data;
     }
@@ -35,6 +31,7 @@ export class MinimalCommandLineParser implements CommandLineParser {
     private async executeCommand(commandName: string, stringData: string): Promise<void> {
         console.log(commandName + " " + stringData);
         let data:any = this.parseData(commandName, stringData);
+
         this.executeCommandAux(commandName, data);
 
     }

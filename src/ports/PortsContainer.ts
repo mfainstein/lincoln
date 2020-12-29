@@ -5,7 +5,7 @@ import {MinimalCommandLineParser} from "./cli/MinimalCommandLineParser";
 
 import {AppTypes} from "../app/AppTypes";
 import {PermissiveAuthorizationService} from "../infra/services/authentication/PermissiveAuthorizationService";
-import {AuthenticationSsoService} from "../app/services/AuthenticationSsoService";
+import {AuthenticationSsoService} from "../app/services/auth/AuthenticationSsoService";
 
 const portsContainer = new Container();
 portsContainer.bind<CommandLineParser>(PortCliTypes.CommandLineParser).to(MinimalCommandLineParser);

@@ -30,3 +30,4 @@ export class ReaderConfig {
         return config;
     }
 }
+

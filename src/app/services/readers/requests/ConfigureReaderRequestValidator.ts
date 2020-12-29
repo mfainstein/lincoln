@@ -3,27 +3,23 @@
 import {inspect} from 'util';
 import Ajv = require('ajv');
 // @ts-ignore
-import ConfigureCommandInput from './ConfigureCommandInput';
+import ConfigureReaderRequest from './ConfigureReaderRequest';
 export const ajv = new Ajv({"allErrors":true,"coerceTypes":false,"format":"fast","nullable":true,"unicode":true,"uniqueItems":true,"useDefaults":true});
 
 ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-06.json'));
 
-export {ConfigureCommandInput};
-export const ConfigureCommandInputSchema = {
+export {ConfigureReaderRequest};
+export const ConfigureReaderRequestSchema = {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "defaultProperties": [
   ],
   "definitions": {
-    "Reader": {
+    "ReaderAttributes": {
       "defaultProperties": [
       ],
       "properties": {
-        "email": {
-          "pattern": "\\S+@\\S+\\.\\S+",
-          "type": "string"
-        },
         "firstName": {
-          "minLength": 1,
+          "minLength": 2,
           "type": "string"
         },
         "interests": {
@@ -33,10 +29,11 @@ export const ConfigureCommandInputSchema = {
           "type": "array"
         },
         "lastName": {
-          "minLength": 1,
+          "minLength": 2,
           "type": "string"
         },
-        "multiReader": {
+        "multiReading": {
+          "description": "On the analogy to multi-tasking - aka reading more than one book at a time.",
           "type": "boolean"
         },
         "preferredMedium": {
@@ -52,7 +49,6 @@ export const ConfigureCommandInputSchema = {
         }
       },
       "required": [
-        "email",
         "firstName",
         "lastName"
       ],
@@ -99,22 +95,30 @@ export const ConfigureCommandInputSchema = {
   },
   "properties": {
     "reader": {
-      "$ref": "#/definitions/Reader"
+      "$ref": "#/definitions/ReaderAttributes"
+    },
+    "token": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
     }
   },
   "required": [
-    "reader"
+    "reader",
+    "token",
+    "type"
   ],
   "type": "object"
 };
 export type ValidateFunction<T> = ((data: unknown) => data is T) & Pick<Ajv.ValidateFunction, 'errors'>
-export const isConfigureCommandInput = ajv.compile(ConfigureCommandInputSchema) as ValidateFunction<ConfigureCommandInput>;
-export default function validate(value: unknown): ConfigureCommandInput {
-  if (isConfigureCommandInput(value)) {
+export const isConfigureReaderRequest = ajv.compile(ConfigureReaderRequestSchema) as ValidateFunction<ConfigureReaderRequest>;
+export default function validate(value: unknown): ConfigureReaderRequest {
+  if (isConfigureReaderRequest(value)) {
     return value;
   } else {
     throw new Error(
-      ajv.errorsText(isConfigureCommandInput.errors!.filter((e: any) => e.keyword !== 'if'), {dataVar: 'ConfigureCommandInput'}) +
+      ajv.errorsText(isConfigureReaderRequest.errors!.filter((e: any) => e.keyword !== 'if'), {dataVar: 'ConfigureReaderRequest'}) +
       '\n\n' +
       inspect(value),
     );

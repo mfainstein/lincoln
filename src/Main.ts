@@ -15,10 +15,14 @@ import {CommandLineParser} from "./ports/cli/CommandLineParser";
 import {PortCliTypes} from "./ports/cli/PortCliTypes";
 import {portsContainer} from "./ports/PortsContainer";
 import {infraContainer} from "./infra/InfraContainer";
+import {AppTypes} from "./app/AppTypes";
+import {ServicesRegistry} from "./app/registries/ServicesRegistry";
 
 let container = Container.merge(domainContainer, appContainer);
 container = Container.merge(container, infraContainer);
 container = Container.merge(container, portsContainer);
+
+let services = container.get<ServicesRegistry>(AppTypes.ServicesRegistry);
 
 //client
 let commandLineParser = container.get<CommandLineParser>(PortCliTypes.CommandLineParser);
