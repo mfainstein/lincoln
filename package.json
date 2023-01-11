@@ -34,7 +34,7 @@
   "homepage": "https://github.com/mfainstein/lincoln#readme",
   "dependencies": {
     "@mikro-orm/core": "^4.0.0",
-    "@mikro-orm/sqlite": "^4.0.0",
+    "@mikro-orm/sqlite": "^5.6.6",
     "@nano-sql/adapter-sqlite": "^2.0.8",
     "@nano-sql/core": "^2.3.7",
     "@types/better-queue": "^3.8.2",
